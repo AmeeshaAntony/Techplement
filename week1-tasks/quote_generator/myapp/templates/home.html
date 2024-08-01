@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote of the Day</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Quote of the Day</h1>
+        {% if quote %}
+            <blockquote>
+                <p>{{ quote.content }}</p>
+                <footer>— {{ quote.author }}</footer>
+            </blockquote>
+        {% else %}
+            <p>No quote available today.</p>
+        {% endif %}
+        <a href="{% url 'search' %}" class="button">Search for quotes by author</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Quotes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Search for Quotes by Author</h1>
+        <form method="get" action="{% url 'search' %}">
+            <label for="author">Author Name:</label>
+            <input type="text" id="author" name="author" value="{{ author }}">
+            <button type="submit">Search</button>
+        </form>
+        {% if quotes %}
+            <ul>
+                {% for quote in quotes %}
+                    <li>
+                        <blockquote>
+                            <p>{{ quote.content }}</p>
+                            <footer>— {{ quote.author }}</footer>
+                        </blockquote>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No quotes found for "{{ author }}"</p>
+        {% endif %}
+        <a href="{% url 'home' %}" class="button">Back to Home</a>
+    </div>
+</body>
+</html>
